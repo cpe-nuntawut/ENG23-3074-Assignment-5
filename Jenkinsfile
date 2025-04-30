@@ -4,23 +4,23 @@ pipeline {
   stages {
     stage('Clone') {
       steps {
-        git 'https://github.com/cpe-nuntawut/ENG23-3074-Assignment-5.git'
+        checkout scm
       }
     }
 
     stage('Build Docker Image') {
       steps {
         script {
-          docker.build('ci-cd-demo:latest')
+          docker.build('assignment5-image')
         }
       }
     }
 
-    stage('Run Container') {
+    stage('Run App') {
       steps {
         script {
-          sh 'docker rm -f ci-cd-app || true'
-          sh 'docker run -d --name ci-cd-app -p 5000:5000 ci-cd-demo:latest'
+          sh 'docker rm -f assignment5-container || true'
+          sh 'docker run -d --name assignment5-container -p 5000:5000 assignment5-image'
         }
       }
     }
