@@ -4,7 +4,7 @@ pipeline {
   stages {
     stage('Clone') {
       steps {
-        git 'https://github.com/your-username/ci-cd-demo.git'
+        git 'https://github.com/cpe-nuntawut/ENG23-3074-Assignment-5.git'
       }
     }
 
